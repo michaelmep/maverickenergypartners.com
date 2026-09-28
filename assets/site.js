@@ -15,8 +15,17 @@
       f.querySelectorAll('input:not([disabled]),select:not([disabled]),textarea:not([disabled])').forEach(function(i){ if(i.type==='hidden'&&i.name!=='role') return; var v=(i.value||'').trim(); if(!v) return; var lab=i.getAttribute('data-label')||i.name; if(i.name==='name') name=v; lines.push(lab+': '+v); });
       var subj=encodeURIComponent((f.getAttribute('data-subject')||'Website inquiry')+(name?' — '+name:''));
       var body=encodeURIComponent(lines.join('\n')+'\n\nSent from '+location.href);
-      window.location.href='mailto:info@maverickenergypartners.com?subject='+subj+'&body='+body;
-      var s=f.querySelector('.form-status'); if(s){ s.style.display='block'; }
+      var s=f.querySelector('.form-status'); var btn=f.querySelector('button[type=submit]');
+      function msg(t){ if(s){ s.textContent=t; s.style.display='block'; } }
+      var hp=f.querySelector('input[name=_honey]'); if(hp&&hp.value) return;
+      var data={_subject:decodeURIComponent(subj), _template:'table', page:location.href};
+      f.querySelectorAll('input:not([disabled]),select:not([disabled]),textarea:not([disabled])').forEach(function(i){ if(!i.name||i.name==='_honey') return; var v=(i.value||'').trim(); if(v) data[i.getAttribute('data-label')||i.name]=v; });
+      if(btn){ btn.disabled=true; } msg('Sending...');
+      fetch('https://formsubmit.co/ajax/info@maverickenergypartners.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+        .then(function(r){ return r.json().then(function(j){ if(!r.ok||String(j.success)!=='true') throw 0; }); })
+        .then(function(){ f.reset(); setRole(roleInput?roleInput.value:'landowner'); msg('Thank you. We received your details and will reply within one business day.'); if(window.gtag) gtag('event','generate_lead',{form_subject:f.getAttribute('data-subject')||''}); })
+        .catch(function(){ msg('Could not send automatically. Opening your email app instead.'); window.location.href='mailto:info@maverickenergypartners.com?subject='+subj+'&body='+body; })
+        .then(function(){ if(btn){ btn.disabled=false; } });
     });
   });
 })();
