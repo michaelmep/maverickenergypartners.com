@@ -18,13 +18,13 @@
       var s=f.querySelector('.form-status'); var btn=f.querySelector('button[type=submit]');
       function msg(t){ if(s){ s.textContent=t; s.style.display='block'; } }
       var hp=f.querySelector('input[name=_honey]'); if(hp&&hp.value) return;
-      var data={_subject:decodeURIComponent(subj), _template:'table', page:location.href};
+      var data={_subject:decodeURIComponent(subj), _template:'table', _cc:'michael.b.siegel@gmail.com', page:location.href}; var em=f.querySelector('input[type=email]'); if(em&&em.value) data._replyto=em.value.trim();
       f.querySelectorAll('input:not([disabled]),select:not([disabled]),textarea:not([disabled])').forEach(function(i){ if(!i.name||i.name==='_honey') return; var v=(i.value||'').trim(); if(v) data[i.getAttribute('data-label')||i.name]=v; });
       if(btn){ btn.disabled=true; } msg('Sending...');
       fetch('https://formsubmit.co/ajax/info@maverickenergypartners.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
         .then(function(r){ return r.json().then(function(j){ if(!r.ok||String(j.success)!=='true') throw 0; }); })
         .then(function(){ f.reset(); setRole(roleInput?roleInput.value:'landowner'); msg('Thank you. We received your details and will reply within one business day.'); if(window.gtag) gtag('event','generate_lead',{form_subject:f.getAttribute('data-subject')||''}); })
-        .catch(function(){ msg('Could not send automatically. Opening your email app instead.'); window.location.href='mailto:info@maverickenergypartners.com?subject='+subj+'&body='+body; })
+        .catch(function(){ if(s){ s.innerHTML='Could not send automatically. <a href="mailto:info@maverickenergypartners.com?subject='+subj+'&body='+body+'" style="text-decoration:underline;font-weight:600;">Click here to send it by email instead</a>, or write to info@maverickenergypartners.com.'; s.style.display='block'; } })
         .then(function(){ if(btn){ btn.disabled=false; } });
     });
   });
