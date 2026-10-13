@@ -5,6 +5,7 @@
   var t=document.querySelector('[data-nav-toggle]'), l=document.getElementById('nav-links');
   if(t&&l){ t.addEventListener('click',function(){ var o=l.classList.toggle('open'); t.setAttribute('aria-expanded',o?'true':'false'); t.textContent=o?'CLOSE':'MENU'; }); }
   document.querySelectorAll('form[data-mailto]').forEach(function(f){
+    f.querySelectorAll('input[title]').forEach(function(i){ i.addEventListener('invalid',function(){ if(i.validity.patternMismatch||i.validity.tooShort) i.setCustomValidity(i.title); }); i.addEventListener('input',function(){ i.setCustomValidity(''); }); });
     var seg=f.querySelector('.form-segmented'); var roleInput=f.querySelector('input[name=role]');
     function setRole(r){ if(roleInput) roleInput.value=r; f.querySelectorAll('[data-role]').forEach(function(g){ g.style.display = g.getAttribute('data-role')===r?'':'none'; g.querySelectorAll('input,select,textarea').forEach(function(i){ i.disabled = g.getAttribute('data-role')!==r; }); }); if(seg) seg.querySelectorAll('button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-set-role')===r); }); }
     if(seg){ seg.querySelectorAll('button').forEach(function(b){ b.addEventListener('click',function(){ setRole(b.getAttribute('data-set-role')); }); }); }

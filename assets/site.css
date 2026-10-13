@@ -1176,6 +1176,8 @@ section { position: relative; }
 .stack-48 { display: flex; flex-direction: column; gap: 48px; }
 
   
+.field input:user-invalid, .field select:user-invalid { border-color: #b3261e; }
+@media (max-width: 640px) { .field-row { grid-template-columns: 1fr; } }
 /* ── static-site additions ─────────────────────────────────────────────── */
 .fade-in { opacity: 1; transform: none; }
 html.js .fade-in:not(.is-visible) { opacity: 0; transform: translateY(12px); }
