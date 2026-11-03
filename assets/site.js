@@ -22,12 +22,17 @@
       var data={_subject:decodeURIComponent(subj), _template:'table', _cc:'michael.b.siegel@gmail.com', page:location.href}; var em=f.querySelector('input[type=email]'); if(em&&em.value) data._replyto=em.value.trim();
       f.querySelectorAll('input:not([disabled]),select:not([disabled]),textarea:not([disabled])').forEach(function(i){ if(!i.name||i.name==='_honey') return; var v=(i.value||'').trim(); if(v) data[i.getAttribute('data-label')||i.name]=v; });
       if(btn){ btn.disabled=true; } msg('Sending...');
-      var ac=('AbortController' in window)?new AbortController():null; var tmr=ac?setTimeout(function(){ ac.abort(); },12000):null;
-      fetch('https://formsubmit.co/ajax/info@maverickenergypartners.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data),signal:ac?ac.signal:undefined})
-        .then(function(r){ return r.json().then(function(j){ if(!r.ok||String(j.success)!=='true') throw 0; }); })
+      function post(url, payload){ var ac=('AbortController' in window)?new AbortController():null; var tmr=ac?setTimeout(function(){ ac.abort(); },12000):null;
+        return fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:ac?ac.signal:undefined})
+          .then(function(r){ return r.json().then(function(j){ if(!r.ok||String(j.success)!=='true') throw 0; }); })
+          .then(function(){ if(tmr) clearTimeout(tmr); }, function(e){ if(tmr) clearTimeout(tmr); throw e; }); }
+      var w3=Object.assign({access_key:'86541166-4991-4bb6-b2e6-9ca873dbac88', subject:data._subject, from_name:'Maverick Energy Partners website', ccemail:data._cc, botcheck:''}, data);
+      delete w3._subject; delete w3._template; delete w3._cc; if(data._replyto){ w3.replyto=data._replyto; delete w3._replyto; }
+      post('https://api.web3forms.com/submit', w3)
+        .catch(function(){ return post('https://formsubmit.co/ajax/info@maverickenergypartners.com', data); })
         .then(function(){ f.reset(); setRole(roleInput?roleInput.value:'landowner'); msg('Thank you. We received your details and will reply within one business day.'); if(window.gtag) gtag('event','generate_lead',{form_subject:f.getAttribute('data-subject')||''}); })
         .catch(function(){ if(s){ s.innerHTML='Our form service did not respond. Your details are still filled in below. <a href="mailto:info@maverickenergypartners.com?subject='+subj+'&body='+body+'" style="text-decoration:underline;font-weight:600;">Click here to send it by email instead</a>, or write to info@maverickenergypartners.com.'; s.style.display='block'; } })
-        .then(function(){ if(tmr) clearTimeout(tmr); if(btn){ btn.disabled=false; } });
+        .then(function(){ if(btn){ btn.disabled=false; } });
     });
   });
 })();
