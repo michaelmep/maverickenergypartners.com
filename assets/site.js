@@ -26,7 +26,7 @@
         return fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:ac?ac.signal:undefined})
           .then(function(r){ return r.json().then(function(j){ if(!r.ok||String(j.success)!=='true') throw 0; }); })
           .then(function(){ if(tmr) clearTimeout(tmr); }, function(e){ if(tmr) clearTimeout(tmr); throw e; }); }
-      var w3=Object.assign({access_key:'86541166-4991-4bb6-b2e6-9ca873dbac88', subject:data._subject, from_name:'Maverick Energy Partners website', ccemail:data._cc, botcheck:''}, data);
+      var w3=Object.assign({access_key:'86541166-4991-4bb6-b2e6-9ca873dbac88', subject:data._subject, from_name:'Maverick Energy Partners website', botcheck:''}, data);
       delete w3._subject; delete w3._template; delete w3._cc; if(data._replyto){ w3.replyto=data._replyto; delete w3._replyto; }
       post('https://api.web3forms.com/submit', w3)
         .catch(function(){ return post('https://formsubmit.co/ajax/info@maverickenergypartners.com', data); })
