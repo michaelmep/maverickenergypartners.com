@@ -19,7 +19,7 @@
       var s=f.querySelector('.form-status'); var btn=f.querySelector('button[type=submit]');
       function msg(t){ if(s){ s.textContent=t; s.style.display='block'; } }
       var hp=f.querySelector('input[name=_honey]'); if(hp&&hp.value) return;
-      var data={_subject:decodeURIComponent(subj), _template:'table', _cc:'michael.b.siegel@gmail.com', page:location.href}; var em=f.querySelector('input[type=email]'); if(em&&em.value) data._replyto=em.value.trim();
+      var data={_subject:decodeURIComponent(subj), _template:'table', page:location.href}; var em=f.querySelector('input[type=email]'); if(em&&em.value) data._replyto=em.value.trim();
       f.querySelectorAll('input:not([disabled]),select:not([disabled]),textarea:not([disabled])').forEach(function(i){ if(!i.name||i.name==='_honey') return; var v=(i.value||'').trim(); if(v) data[i.getAttribute('data-label')||i.name]=v; });
       if(btn){ btn.disabled=true; } msg('Sending...');
       function post(url, payload){ var ac=('AbortController' in window)?new AbortController():null; var tmr=ac?setTimeout(function(){ ac.abort(); },12000):null;
