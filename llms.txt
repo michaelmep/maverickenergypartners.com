@@ -27,3 +27,40 @@ Maverick Energy Partners screens every tract for grid capacity (138 kV minimum, 
 - [Process: source, verify, de-risk, deliver](https://maverickenergypartners.com/process.html)
 - [About](https://maverickenergypartners.com/about.html)
 - [Contact](https://maverickenergypartners.com/contact.html)
+
+## Key facts
+- Buyer type: direct buyer, not a broker. No listing, no commission, no fee for the screen.
+- Geography: Texas only. All six ERCOT zones plus the Entergy Texas area of East Texas.
+- Power criteria: 138 kV minimum, 345 kV priority. Spare capacity at the nearby substation matters more than distance to a line.
+- Parcel size: 20 acres or larger, or smaller parcels inside a larger assemblage.
+- Typical structure: a short paid option period followed by a cash closing.
+- Who we buy from: landowners, heirs, estates, co-owners and brokers.
+- Contact: info@maverickenergypartners.com
+
+## Common questions
+### How do I sell land near a power line or substation in Texas?
+Start by telling us where the land is and what you know about nearby transmission infrastructure. You do not need to know the voltage or ownership. We do that research ourselves using ERCOT, utility and county records, then tell you honestly whether it is a fit and what it might be worth.
+
+### Do I need a realtor to sell my land to a data center developer?
+No. We buy directly from landowners and brokers alike. If you already have a broker, we are glad to work with them. If you do not, you do not need to hire one to talk to us.
+
+### What makes land valuable for a data center site?
+Proximity to a substation or transmission line is the headline, but the real driver is whether that substation has spare capacity to accept new load. Most nearby substations in Texas do not. Parcel size, shape, flood zone, water access and zoning also matter. We screen for all of it before making an offer.
+
+### How fast can you close?
+Once we have confirmed the site fits, terms are usually a short paid option period of 60 to 180 days to finish utility and title diligence, followed by a cash closing. We move as fast as the utility and title work allow.
+
+### My land has multiple owners, or is in probate. Can you still buy it?
+Yes. We regularly work with heirship property, estates in probate and land held across several family members. Tell us the situation up front and we will structure around it.
+
+### Is there a minimum acreage?
+We typically look at parcels of 20 acres or more, but smaller tracts can matter if they sit next to a larger assemblage we are already evaluating. When in doubt, send it to us. The screen is free.
+
+### Do you pay cash, and is there a fee to talk to you?
+Closings are cash. There is no cost or obligation to have us screen your land. Most of what we check is public record, and we will tell you plainly if it is not a fit.
+
+### Do you buy land outside Texas?
+No. We work Texas only, across ERCOT and the Entergy Texas service area in the east. Knowing one state deeply is the whole point.
+
+## Reference
+- [Texas land and power glossary](https://maverickenergypartners.com/glossary.html): plain-language definitions of ERCOT, PUCT, 138 kV, 345 kV, interconnection, easement, option agreement and related terms
